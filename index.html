@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChemBuddy - Kalkulator Kimia</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #1e293b;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      color: #38bdf8;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    input, select {
+      background: #334155;
+      color: white;
+    }
+
+    button {
+      background: #38bdf8;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .result {
+      margin-top: 15px;
+      background: #334155;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  ChemBuddy - Kalkulator Kimia
+</header>
+
+<div class="container">
+
+  <!-- PPM -->
+  <div class="card">
+    <h2>1. Kalkulator PPM</h2>
+
+    <input type="number" id="massaPPM" placeholder="Massa zat (mg)">
+    <input type="number" id="volumePPM" placeholder="Volume larutan (L)">
+
+    <button onclick="hitungPPM()">Hitung PPM</button>
+
+    <div class="result" id="hasilPPM"></div>
+  </div>
+
+  <!-- MOLARITAS -->
+  <div class="card">
+    <h2>2. Kalkulator Molaritas</h2>
+
+    <input type="number" id="molMolaritas" placeholder="Jumlah mol">
+    <input type="number" id="volumeMolaritas" placeholder="Volume larutan (L)">
+
+    <button onclick="hitungMolaritas()">Hitung Molaritas</button>
+
+    <div class="result" id="hasilMolaritas"></div>
+  </div>
+
+  <!-- NORMALITAS -->
+  <div class="card">
+    <h2>3. Kalkulator Normalitas</h2>
+
+    <input type="number" id="molNormalitas" placeholder="Mol zat">
+    <input type="number" id="valensi" placeholder="Valensi">
+    <input type="number" id="volumeNormalitas" placeholder="Volume larutan (L)">
+
+    <button onclick="hitungNormalitas()">Hitung Normalitas</button>
+
+    <div class="result" id="hasilNormalitas"></div>
+  </div>
+
+  <!-- SUHU -->
+  <div class="card">
+    <h2>4. Konversi Suhu</h2>
+
+    <input type="number" id="celcius" placeholder="Celcius">
+
+    <button onclick="konversiSuhu()">Konversi</button>
+
+    <div class="result" id="hasilSuhu"></div>
+  </div>
+
+  <!-- AR -->
+  <div class="card">
+    <h2>5. Ar Unsur</h2>
+
+    <select id="unsurAr">
+      <option value="1.008">H - Hidrogen</option>
+      <option value="12.011">C - Karbon</option>
+      <option value="14.007">N - Nitrogen</option>
+      <option value="15.999">O - Oksigen</option>
+      <option value="22.990">Na - Natrium</option>
+      <option value="24.305">Mg - Magnesium</option>
+      <option value="35.45">Cl - Klorin</option>
+      <option value="39.098">K - Kalium</option>
+      <option value="40.078">Ca - Kalsium</option>
+      <option value="55.845">Fe - Besi</option>
+    </select>
+
+    <button onclick="tampilAr()">Tampilkan Ar</button>
+
+    <div class="result" id="hasilAr"></div>
+  </div>
+
+  <!-- BM -->
+  <div class="card">
+    <h2>6. Kalkulator BM Sederhana</h2>
+
+    <select id="senyawa">
+      <option value="18">H2O</option>
+      <option value="44">CO2</option>
+      <option value="58.44">NaCl</option>
+      <option value="98">H2SO4</option>
+      <option value="36.5">HCl</option>
+    </select>
+
+    <button onclick="hitungBM()">Hitung BM</button>
+
+    <div class="result" id="hasilBM"></div>
+  </div>
+
+</div>
+
+<script>
+
+  // PPM
+  function hitungPPM() {
+    let massa = document.getElementById("massaPPM").value;
+    let volume = document.getElementById("volumePPM").value;
+
+    let ppm = massa / volume;
+
+    document.getElementById("hasilPPM").innerHTML =
+      "Hasil PPM = " + ppm.toFixed(2) + " ppm";
+  }
+
+  // MOLARITAS
+  function hitungMolaritas() {
+    let mol = document.getElementById("molMolaritas").value;
+    let volume = document.getElementById("volumeMolaritas").value;
+
+    let M = mol / volume;
+
+    document.getElementById("hasilMolaritas").innerHTML =
+      "Molaritas = " + M.toFixed(2) + " M";
+  }
+
+  // NORMALITAS
+  function hitungNormalitas() {
+    let mol = document.getElementById("molNormalitas").value;
+    let valensi = document.getElementById("valensi").value;
+    let volume = document.getElementById("volumeNormalitas").value;
+
+    let N = (mol * valensi) / volume;
+
+    document.getElementById("hasilNormalitas").innerHTML =
+      "Normalitas = " + N.toFixed(2) + " N";
+  }
+
+  // SUHU
+  function konversiSuhu() {
+    let c = document.getElementById("celcius").value;
+
+    let f = (c * 9/5) + 32;
+    let k = parseFloat(c) + 273.15;
+
+    document.getElementById("hasilSuhu").innerHTML =
+      "Fahrenheit = " + f.toFixed(2) + " °F <br>" +
+      "Kelvin = " + k.toFixed(2) + " K";
+  }
+
+  // AR
+  function tampilAr() {
+    let ar = document.getElementById("unsurAr").value;
+
+    document.getElementById("hasilAr").innerHTML =
+      "Nilai Ar = " + ar;
+  }
+
+  // BM
+  function hitungBM() {
+    let bm = document.getElementById("senyawa").value;
+
+    document.getElementById("hasilBM").innerHTML =
+      "BM Senyawa = " + bm + " g/mol";
+  }
+
+</script>
+
+</body>
+</html>
