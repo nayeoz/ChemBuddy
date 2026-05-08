@@ -1,0 +1,167 @@
+# =========================================
+# CHEMBUDDY
+# Program Perhitungan Kimia Dasar
+# =========================================
+
+print("=================================")
+print("        WELCOME TO CHEMBUDDY     ")
+print("=================================")
+
+while True:
+
+    print("\n===== MENU UTAMA =====")
+    print("1. Normalitas")
+    print("2. Molaritas")
+    print("3. Berat Ekivalen (BE)")
+    print("4. Berat Molekul (BM)")
+    print("5. Konversi Suhu")
+    print("6. ppm")
+    print("7. Keluar")
+
+    pilihan = input("Masukkan pilihan (1-7): ")
+
+    # =====================================
+    # NORMALITAS
+    # =====================================
+    if pilihan == "1":
+
+        print("\n=== MENGHITUNG NORMALITAS ===")
+
+        M = float(input("Masukkan molaritas (M): "))
+        valensi = float(input("Masukkan valensi: "))
+
+        N = M * valensi
+
+        print("Normalitas =", N, "N")
+
+    # =====================================
+    # MOLARITAS
+    # =====================================
+    elif pilihan == "2":
+
+        print("\n=== MENGHITUNG MOLARITAS ===")
+
+        massa = float(input("Masukkan massa zat (gram): "))
+        BM = float(input("Masukkan BM: "))
+        volume = float(input("Masukkan volume larutan (L): "))
+
+        M = massa / (BM * volume)
+
+        print("Molaritas =", round(M, 4), "M")
+
+    # =====================================
+    # BERAT EKIVALEN
+    # =====================================
+    elif pilihan == "3":
+
+        print("\n=== MENGHITUNG BERAT EKIVALEN ===")
+
+        BM = float(input("Masukkan BM: "))
+        valensi = float(input("Masukkan valensi: "))
+
+        BE = BM / valensi
+
+        print("Berat Ekivalen =", round(BE, 4))
+
+    # =====================================
+    # BERAT MOLEKUL
+    # =====================================
+    elif pilihan == "4":
+
+        print("\n=== MENGHITUNG BERAT MOLEKUL ===")
+
+        jumlah_unsur = int(input("Masukkan jumlah unsur: "))
+
+        total_BM = 0
+
+        for i in range(jumlah_unsur):
+
+            print("\nUnsur ke-", i + 1)
+
+            Ar = float(input("Masukkan Ar unsur: "))
+            jumlah_atom = int(input("Masukkan jumlah atom: "))
+
+            total_BM += Ar * jumlah_atom
+
+        print("\nBM =", total_BM)
+
+    # =====================================
+    # KONVERSI SUHU
+    # =====================================
+    elif pilihan == "5":
+
+        print("\n=== KONVERSI SUHU ===")
+        print("1. Celcius ke Kelvin")
+        print("2. Kelvin ke Celcius")
+        print("3. Celcius ke Fahrenheit")
+        print("4. Fahrenheit ke Celcius")
+
+        suhu_pilihan = input("Pilih konversi (1-4): ")
+
+        # Celcius ke Kelvin
+        if suhu_pilihan == "1":
+
+            c = float(input("Masukkan suhu Celcius: "))
+
+            k = c + 273
+
+            print("Kelvin =", k, "K")
+
+        # Kelvin ke Celcius
+        elif suhu_pilihan == "2":
+
+            k = float(input("Masukkan suhu Kelvin: "))
+
+            c = k - 273
+
+            print("Celcius =", c, "°C")
+
+        # Celcius ke Fahrenheit
+        elif suhu_pilihan == "3":
+
+            c = float(input("Masukkan suhu Celcius: "))
+
+            f = (9 / 5 * c) + 32
+
+            print("Fahrenheit =", f, "°F")
+
+        # Fahrenheit ke Celcius
+        elif suhu_pilihan == "4":
+
+            f = float(input("Masukkan suhu Fahrenheit: "))
+
+            c = 5 / 9 * (f - 32)
+
+            print("Celcius =", round(c, 2), "°C")
+
+        else:
+            print("Pilihan tidak tersedia!")
+
+    # =====================================
+    # PPM
+    # =====================================
+    elif pilihan == "6":
+
+        print("\n=== MENGHITUNG PPM ===")
+
+        massa = float(input("Masukkan massa zat terlarut (mg): "))
+        volume = float(input("Masukkan volume larutan (L): "))
+
+        ppm = massa / volume
+
+        print("ppm =", round(ppm, 4), "ppm")
+
+    # =====================================
+    # KELUAR
+    # =====================================
+    elif pilihan == "7":
+
+        print("\nTerima kasih telah menggunakan ChemBuddy!")
+        break
+
+    # =====================================
+    # INPUT SALAH
+    # =====================================
+    else:
+
+        print("\nPilihan tidak valid!")
